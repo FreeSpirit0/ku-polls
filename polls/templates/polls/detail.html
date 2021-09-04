@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Poll Question</title>
+        {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 </head>
 <body>
     <form action="{% url 'polls:vote' question.id %}" method="post">
