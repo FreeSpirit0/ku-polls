@@ -18,6 +18,14 @@ class Question(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.publication_date <= now
 
+    def is_published(self):
+        now = timezone.now()
+        return now >= self.publication_date
+
+    def can_vote(self):
+        now = timezone.now()
+        return self.publication_date <= now <= self.end_date
+
     def __str__(self):
         return self.question_text
 
