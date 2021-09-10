@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends "base.html" %}
     <meta charset="UTF-8">
-    <title>Poll Question</title>
+    {% block title %}
+    <title>{{ question.question_text }}</title>
+    {% endblock %}
         {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 </head>
 <body>
+    {% block content %}
+        <div class="container mx-auto">
+			<section class="flex items-start justify-center h-screen m-10">
+    {% block polls %}
     <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
     <fieldset>
-        <legend><h1>{{ question.question_text }}</h1></legend>
+        <legend><span class="text-gray-600 text-5xl">{{ question.question_text }}</span></legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        {% endfor %}
+        <div class="mt-12">
+            {% for choice in question.choice_set.all %}
+                <input type="radio" class="form-radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label class="ml-5 text-3xl text-gray-500" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+        </div>
     </fieldset>
-    <input type="submit" value="Vote">
-</form>
+        <div class="flex justify-center">
+            <input class="scale-125 mt-12 text-2xl bg-green-400 text-white rounded-lg hover:bg-green-500 focus:ring-blue-500" type="submit" value="Vote">
+        </div>
+    </form>
+    {% endblock %}
+            </section>
+        </div>
+    {% endblock %}
 </body>
 </html>

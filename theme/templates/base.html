@@ -14,9 +14,10 @@
 	<body class="font-sans leading-normal tracking-normal">
         <nav class="flex items-center justify-between flex-wrap p-6 bg-green-600">
             <div class="flex items-center flex-no-shrink text-white mr-6">
-                <span class="font-semibold text-3xl tracking-tight">Polls</span>
+                <a class="font-semibold text-3xl tracking-tight hover:text-gray-200" href="/polls">Polls</a>
             </div>
         </nav>
+        {% block content %}
 		<div class="container mx-auto">
 			<section class="flex items-center justify-center h-screen">
                 {% block polls %}
@@ -24,5 +25,6 @@
                 {% endblock %}
 			</section>
 		</div>
+        {% endblock %}
 	</body>
 </html>
