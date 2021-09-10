@@ -3,17 +3,29 @@
 <head>
     {% extends "base.html" %}
   <meta charset="UTF-8">
-  <title>Polls</title>
+    {% block title %}
+        <title>Polls</title>
+    {% endblock %}
 </head>
 <body>
     <p>Polls</p>
     {% if latest_question_list %}
         {% block polls %}
-        <div>
         {% for question in latest_question_list %}
-            <a class="inline-flex items-center h-30 p-8 m-2 text-2xl text-white max-w-max max-h-full bg-green-300 rounded-lg hover:bg-green-500" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+            <div class="flex flex-col justify-center p-16 m-16">
+                <div class="text-center pb-8">
+                    <span class="text-3xl text-gray-500">{{ question.question_text }}</span>
+                </div>
+                <div class="flex flex-row space-x-8">
+                    <div class="text-center h-0 w-24 bg-green-300 rounded-lg hover:bg-green-500 pb-8">
+                        <a class="text-2xl text-white" href="{% url 'polls:detail' question.id %}">Vote</a>
+                    </div>
+                    <div class="text-center h-4 w-24 bg-green-300 rounded-lg hover:bg-green-500 pb-8">
+                        <a class="text-2xl text-white" href="{% url 'polls:results' question.id %}">Results</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </div>
         {% endblock %}
     {% else %}
         <p>No polls are available.</p>
