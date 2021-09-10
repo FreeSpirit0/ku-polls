@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends "base.html" %}
   <meta charset="UTF-8">
   <title>Polls</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 </head>
 <body>
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+    <p>Polls</p>
+    {% if latest_question_list %}
+        {% block polls %}
+        <div>
+        {% for question in latest_question_list %}
+            <a class="inline-flex items-center h-30 p-8 m-2 text-2xl text-white max-w-max max-h-full bg-green-300 rounded-lg hover:bg-green-500" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+        {% endfor %}
+        </div>
+        {% endblock %}
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
 </body>
 </html>
