@@ -18,7 +18,7 @@
     {% csrf_token %}
     <fieldset>
         <legend><span class="text-gray-600 text-5xl">{{ question.question_text }}</span></legend>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% if error_message %}<span class="text-red-500 text-2xl">{{ error_message }}</span>{% endif %}
         <div class="mt-12">
             {% for choice in question.choice_set.all %}
                 <input type="radio" class="form-radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
