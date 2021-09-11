@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from .models import Question
+from .models import Choice, Question
 
 
 class IndexView(generic.ListView):
