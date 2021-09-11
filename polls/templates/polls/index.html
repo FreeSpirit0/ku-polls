@@ -11,21 +11,23 @@
     <p>Polls</p>
     {% if latest_question_list %}
         {% block polls %}
-        {% for question in latest_question_list %}
-            <div class="flex flex-col justify-center p-16 m-16">
-                <div class="text-center pb-8">
-                    <span class="text-3xl text-gray-500">{{ question.question_text }}</span>
-                </div>
-                <div class="flex flex-row space-x-8">
-                    <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
-                        <a class="text-2xl text-white" href="{% url 'polls:detail' question.id %}">Vote</a>
+            <div class="grid grid-cols-3 gap-4">
+            {% for question in latest_question_list %}
+                <div class="flex flex-col justify-center p-16 m-16">
+                    <div class="text-center pb-8">
+                        <span class="text-3xl text-gray-500">{{ question.question_text }}</span>
                     </div>
-                    <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
-                        <a class="text-2xl text-white" href="{% url 'polls:results' question.id %}">Results</a>
+                    <div class="flex flex-row space-x-8">
+                        <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
+                            <a class="text-2xl text-white" href="{% url 'polls:detail' question.id %}">Vote</a>
+                        </div>
+                        <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
+                            <a class="text-2xl text-white" href="{% url 'polls:results' question.id %}">Results</a>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
             </div>
-        {% endfor %}
         {% endblock %}
     {% else %}
         <p>No polls are available.</p>
