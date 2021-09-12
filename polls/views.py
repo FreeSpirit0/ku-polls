@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.contrib import messages
 from .models import Choice, Question
 
 
@@ -24,11 +25,19 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
-    def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
-        return Question.objects.filter(publication_date__lte=timezone.now())
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = Question.objects.filter(pk=kwargs['pk'])[0]
+        except:
+            messages.error(request, f"Poll {kwargs['pk']} does not exist")
+            return HttpResponseRedirect(reverse('polls:index'))
+
+        if not self.object.can_vote():
+            messages.error(request, f'Voting is not allowed for question "{self.object.question_text}"')
+            return HttpResponseRedirect(reverse('polls:index'))
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 class ResultsView(generic.DetailView):
