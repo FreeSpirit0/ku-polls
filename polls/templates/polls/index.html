@@ -24,9 +24,15 @@
                         <span class="text-3xl text-gray-500">{{ question.question_text }}</span>
                     </div>
                     <div class="flex flex-row space-x-8">
-                        <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
-                            <a class="text-2xl text-white" href="{% url 'polls:detail' question.id %}">Vote</a>
-                        </div>
+                        {% if question.can_vote %}
+                            <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
+                                <a class="text-2xl text-white" href="{% url 'polls:detail' question.id %}">Vote</a>
+                            </div>
+                        {% else %}
+                            <div class="text-center py-3 px-6 bg-gray-300 rounded-full">
+                                <span class="text-2xl text-white" href="{% url 'polls:detail' question.id %}">Vote</span>
+                            </div>
+                        {% endif %}
                         <div class="text-center py-3 px-6 bg-green-300 rounded-full hover:bg-green-500">
                             <a class="text-2xl text-white" href="{% url 'polls:results' question.id %}">Results</a>
                         </div>
