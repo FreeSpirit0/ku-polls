@@ -1,6 +1,6 @@
 # KU Polls
-[![Build Status](https://travis-ci.com/TopsonArcana/demo-pyci.svg?branch=master)](https://travis-ci.com/TopsonArcana/demo-pyci)  
-[![codecov](https://codecov.io/gh/TopsonArcana/ku-polls/branch/master/graph/badge.svg?token=IS9TXAF6RX)](https://codecov.io/gh/TopsonArcana/ku-polls)  
+[![Build Status](https://app.travis-ci.com/TopsonArcana/ku-polls.svg?branch=iteration2)](https://app.travis-ci.com/TopsonArcana/ku-polls)  
+[![codecov](https://codecov.io/gh/TopsonArcana/ku-polls/branch/iteration2/graph/badge.svg?token=IS9TXAF6RX)](https://codecov.io/gh/TopsonArcana/ku-polls)  
 A web application for conducting polls at [Kasetsart University](https://ku.ac.th)
 
 ## [Project Documents](../../wiki/Home)
