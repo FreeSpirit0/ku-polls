@@ -31,7 +31,7 @@ class DetailView(generic.DetailView):
         """Handle the GET request."""
         try:
             self.object = Question.objects.filter(pk=kwargs['pk'])[0]
-        except Http404:
+        except (Http404, IndexError):
             messages.error(request, f"Poll {kwargs['pk']} does not exist")
             return HttpResponseRedirect(reverse('polls:index'))
 

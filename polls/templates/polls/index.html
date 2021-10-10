@@ -8,8 +8,8 @@
     {% endblock %}
 </head>
 <body>
-    {% if latest_question_list %}
         {% block polls %}
+    {% if latest_question_list %}
             {% if messages %}
                 <div class="items-top bg-red-100 border border-red-400 text-2xl text-red-700 rounded-lg p-5">
                     {% for message in messages %}
@@ -40,9 +40,11 @@
                 </div>
             {% endfor %}
             </div>
-        {% endblock %}
     {% else %}
-        <p>No polls are available.</p>
+        <div class="items-top bg-red-100 border border-red-400 text-2xl text-red-700 rounded-lg p-5">
+            <span>No polls are available.</span>
+        </div>
     {% endif %}
+        {% endblock %}
 </body>
 </html>
