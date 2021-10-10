@@ -1,3 +1,5 @@
 Django==3.2.6
 django-environ==0.7.0
 django-tailwind
+coverage==5.5
+flake8==3.9.2
