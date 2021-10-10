@@ -1,3 +1,4 @@
+"""Routes to different urls."""
 from django.urls import path
 from . import views
 
