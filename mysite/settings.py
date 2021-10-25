@@ -145,3 +145,7 @@ INTERNAL_IPS = [
 ]
 
 TAILWIND_CSS_PATH = 'css/dist/styles.css'
+
+LOGIN_REDIRECT_URL = '/polls/'
+
+LOGOUT_REDIRECT_URL = '/accounts/login/'
