@@ -9,6 +9,19 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Choice, Question, Vote
+import logging
+
+logger = logging.getLogger("polls")
+
+
+def get_client_ip(request):
+    """Get the visitor’s IP address using request headers."""
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 class IndexView(generic.ListView):
@@ -73,7 +86,7 @@ def vote(request, question_id):
         except Vote.DoesNotExist:
             Vote.objects.create(user=user, choice=selected_choice).save()
 
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+    return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
 def signup(request):
