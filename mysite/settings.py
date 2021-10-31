@@ -146,6 +146,11 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '{asctime}:{name}:{levelname}:{message}'
+        },
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
