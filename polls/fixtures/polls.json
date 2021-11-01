@@ -1,0 +1,35 @@
+[
+{
+  "model": "polls.question",
+  "pk": 9,
+  "fields": {
+    "question_text": "What's your interest in web development",
+    "publication_date": "2021-10-10T08:05:09Z",
+    "end_date": "2021-11-30T08:05:14Z"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 25,
+  "fields": {
+    "question": 9,
+    "choice_text": "Backend"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 26,
+  "fields": {
+    "question": 9,
+    "choice_text": "Frontend"
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "choice": 25
+  }
+}
+]
